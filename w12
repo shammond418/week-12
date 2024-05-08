@@ -1,0 +1,22 @@
+section .text
+        global _start
+_start:
+        mov eax,9
+        call check
+check:
+        and eax, 1
+        jz evnn
+        jnz equal
+evnn:
+        mov eax,'y'     
+        mov [result],eax ; this will print 'y', ascii 121
+        jmp exit
+equal:
+        mov eax,'n'
+        mov [result], eax ;this will print 'n', ascii 110
+        jmp exit
+exit:
+        mov eax,1
+        int 0x80
+segment .bss
+        result resb 1
